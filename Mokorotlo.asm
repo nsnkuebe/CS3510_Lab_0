@@ -1,30 +1,30 @@
 .data
-prompt:   .asciz "Enter the height of the Mokorotlo: "
-star:     .asciz "*"
-space:    .asciz " "
-newline:  .asciz "\n"
+prompt:   .asciz "Enter the height of the Mokorotlo: " # string prompt = "Enter the height of the Mokorotlo: "
+star:     .asciz "*" # string star = "*";
+space:    .asciz " " # string space = " ";
+newline:  .asciz "\n" # string newline = "\n";
 
 .text
 
 _start:
     li a7, 4
-    la a0, prompt
+    la a0, prompt # cout << prompt;
     ecall
 
-    li a7, 5
+    li a7, 5 # cin >> height;
     ecall
     mv s0, a0       
 
     li s1, 1        
 
-outer_loop:
+outer_loop: # for (int row = 1; row <= height; row++)
     bgt s1, s0, end_outer_loop  
 
     mv t0, s0
     sub t0, t0, s1 
     li t1, 0         
 
-space_loop:
+space_loop: # for (int i = 0; i < height - row; i++)
     bge t1, t0, end_space_loop
     li a7, 4
     la a0, space
@@ -35,7 +35,7 @@ space_loop:
 end_space_loop:
     li t2, 0         
 
-star_loop:
+star_loop: # for (int j = 0; j < row; j++)
     bge t2, s1, end_star_loop
     
     li a7, 4
