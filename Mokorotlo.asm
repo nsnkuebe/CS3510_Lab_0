@@ -15,13 +15,13 @@ _start:
     ecall
     mv s0, a0       
 
-    li s1, 1         
+    li s1, 1        
 
 outer_loop:
     bgt s1, s0, end_outer_loop  
 
     mv t0, s0
-    sub t0, t0, s1
+    sub t0, t0, s1 
     li t1, 0         
 
 space_loop:
@@ -33,15 +33,22 @@ space_loop:
     j space_loop
 
 end_space_loop:
-    li t2, 0
-    slli t4, s1, 1   
-    addi t4, t4, -1  
+    li t2, 0         
 
 star_loop:
-    bge t2, t4, end_star_loop
+    bge t2, s1, end_star_loop
+    
     li a7, 4
     la a0, star
     ecall
+    
+    addi t3, s1, -1   
+    bge t2, t3, skip_space
+    li a7, 4
+    la a0, space
+    ecall
+    
+skip_space:
     addi t2, t2, 1
     j star_loop
 
@@ -50,7 +57,7 @@ end_star_loop:
     la a0, newline
     ecall
 
-    addi s1, s1, 1
+    addi s1, s1, 1   #
     j outer_loop
 
 end_outer_loop:
