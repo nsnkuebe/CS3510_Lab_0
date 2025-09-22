@@ -1,22 +1,22 @@
  .data
 
- mon: .asciz "Mantaha"
- tue: .asciz "Labobeli"
- wed: .asciz "Laboraro"
- thu: .asciz "Labone"
- fri: .asciz "Labohlano"
- sat: .asciz "Moqebelo"
- sun: .asciz "Sontaha"
- prompt: .asciz "Enter day of the day: "
+ mon: .asciz "Mantaha" # string mon = "Mantaha";
+ tue: .asciz "Labobeli" # string tue = "Labobeli";
+ wed: .asciz "Laboraro" # string wed = "Laboraro";
+ thu: .asciz "Labone" # string thu = "Labone";
+ fri: .asciz "Labohlano" # string fri = "Labohlano";
+ sat: .asciz "Moqebelo" # string sat = "Moqebelo";
+ sun: .asciz "Sontaha" # string sun = "Sontaha";
+ prompt: .asciz "Enter day of the week: " # string prompt = "Enter day of the week: ";
 
  .text
 
  _start:
-    la a0, prompt
+    la a0, prompt # cout << prompt;
     li a7, 4
     ecall
     
-    li a7, 5
+    li a7, 5 # cin >> day_number;
     ecall
     
     mv t0, a0
